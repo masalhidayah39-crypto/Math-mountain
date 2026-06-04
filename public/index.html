@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Math Mountain (Multiplayer)</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#0b1220" />
+  </head>
+  <body>
+    <header class="header">
+      <div>
+        <h1>Math Mountain</h1>
+        <p class="sub">Siapa paling cepat jawab, naik 1 level sampai puncak.</p>
+      </div>
+      <div class="badge" id="roomBadge" hidden>
+        Room: <span id="roomCodeText"></span>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel">
+        <h2>Lobby</h2>
+
+        <div class="row">
+          <label>Nama</label>
+          <input id="nameInput" maxlength="20" placeholder="contoh: Budi" />
+        </div>
+
+        <div class="row">
+          <label>Kode room</label>
+          <input id="roomInput" maxlength="5" placeholder="ABCDE" />
+        </div>
+
+        <div class="actions">
+          <button id="createBtn">Buat room</button>
+          <button id="joinBtn" class="secondary">Gabung room</button>
+          <button id="leaveBtn" class="danger" hidden>Keluar</button>
+        </div>
+
+        <div class="divider"></div>
+
+        <div id="hostControls" hidden>
+          <button id="startBtn" class="primary">Mulai game</button>
+          <p class="hint">Host: mulai setelah minimal 2 pemain masuk.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3>Status</h3>
+        <div class="status" id="statusBox">Belum terhubung…</div>
+        <div class="log" id="logBox"></div>
+      </section>
+
+      <section class="panel game">
+        <div class="gameTop">
+          <div class="questionCard">
+            <div class="label">Soal</div>
+            <div id="questionText" class="questionText">—</div>
+          </div>
+
+          <div class="answerCard">
+            <div class="label">Jawaban</div>
+            <div class="answerRow">
+              <input id="answerInput" inputmode="numeric" placeholder="ketik angka…" disabled />
+              <button id="submitBtn" class="primary" disabled>Kirim</button>
+            </div>
+            <div id="answerHint" class="hint">Masuk room dan mulai game dulu.</div>
+          </div>
+        </div>
+
+        <div class="gameBottom">
+          <div class="mountainWrap">
+            <h2>Gunung</h2>
+            <div id="mountain" class="mountain">
+              <div class="summit">Puncak</div>
+              <div class="panorama" id="panorama" hidden>
+                <div class="panoramaTitle">Pemandangan indah!</div>
+                <div class="panoramaSub">Selamat, kamu sampai puncak.</div>
+              </div>
+            </div>
+            <div class="levelsNote">Level: 0 sampai 10 (puncak)</div>
+          </div>
+
+          <div class="leaderboardWrap">
+            <h2>Papan Skor</h2>
+            <div id="playersList" class="playersList"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      Tips: buka link yang sama di 2+ tab/perangkat, lalu gabung dengan kode room yang sama.
+    </footer>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/client.js"></script>
+  </body>
+          </html>
